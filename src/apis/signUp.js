@@ -1,12 +1,13 @@
 import auth from "./auth";
 
-export const signUp = async (user) => {
+export const signUp = async (user, navigate) => {
     try {
         const result = await auth.post("/register", user);
+        navigate("/")
         return result.data;
     } catch (error) {
         if (error.response.status === 401) {
-            alert("아이디또는 비밀번호를 확인해주세요.");
+            alert(error.response.data.message);
         }
     }
 };

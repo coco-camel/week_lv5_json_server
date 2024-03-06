@@ -5,7 +5,7 @@ const authAxios = axios.create({
 });
 export default authAxios;
 
-export const getAuthAxios = (token) => {
+export const getAuthAxios = (token, navigate) => {
     const authAxios = axios.create({
         baseURL: process.env.REACT_APP_SERVER_URL,
         headers: {
@@ -14,11 +14,9 @@ export const getAuthAxios = (token) => {
     }
     );
     authAxios.interceptors.response.use(res => res, async error => {
-        if (error.response.status === 401) {
-            window.location.href = '/';
-            // 흠... 다른건 왜 안되는거지....
+        if (await error.response.status === 401) {
+            navigate("/")
         }
-        return Promise.reject(error);
     })
     return authAxios;
 }
