@@ -1,12 +1,12 @@
-import auth from "./auth";
+import auth from "./authAxios";
 import { setCookie } from "../cookies/cookies";
 
-export const login = async (user, navigate) => {
+export const login = async (id, password, navigate) => {
     try {
-        const result = await auth.post("/login", user);
+        const result = await auth.post("/login", { id, password });
         const { token } = result.data;
         setCookie("accessToken", "Bearer " + token);
-        navigate("/mypage");
+        navigate("/Todomain");
         return result.data;
     } catch (error) {
         if (error.response.status === 401) {
@@ -15,3 +15,4 @@ export const login = async (user, navigate) => {
         return error.response
     }
 };
+

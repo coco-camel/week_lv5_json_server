@@ -38,14 +38,27 @@ const ButtonWrapper = styled.div`
 
 function UserForm(props) {
   const navigate = useNavigate();
-  const [user, onChange] = useForm();
+  const [id, onChangeId] = useForm();
+  const [password, onChangePassword] = useForm();
 
   const onClickLoginHandler = async () => {
-    await login(user, navigate);
+    if (id.trim() === "") {
+      return alert("아이디를 입력해 주세요 .");
+    } else if (password.trim() === "") {
+      return alert("비밀번호를 입력해 주세요.");
+    } else {
+      await login(id, password, navigate);
+    }
   };
 
   const onClickSignUpHandler = async () => {
-    await signUp(user, navigate);
+    if (id.trim() === "") {
+      return alert("아이디를 입력해 주세요 .");
+    } else if (password.trim() === "") {
+      return alert("비밀번호를 입력해 주세요.");
+    } else {
+      await signUp(id, password, navigate);
+    }
   };
 
   return (
@@ -58,16 +71,15 @@ function UserForm(props) {
         }}
       >
         <InputWrapper>
-          <Input type="text" name="id" placeholder="아이디" value={user.id} onChange={onChange} />
+          <Input type="text" placeholder="아이디" value={id} onChange={onChangeId} />
         </InputWrapper>
         <InputWrapper>
           <Input
             type="password"
-            name="password"
             autoComplete="on"
             placeholder="비밀번호"
-            value={user.password}
-            onChange={onChange}
+            value={password}
+            onChange={onChangePassword}
           />
         </InputWrapper>
         <ButtonWrapper>

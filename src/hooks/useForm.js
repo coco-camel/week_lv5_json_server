@@ -1,13 +1,9 @@
 import { useState } from "react";
 
 export const useForm = () => {
-    const [user, setUser] = useState({
-        id: "",
-        password: "",
-    });
+    const [value, setValue] = useState("");
     const onChangeHandler = (e) => {
-        const { name, value } = e.target;
-        setUser({ ...user, [name]: value });
+        setValue(e.target.value);
     };
-    return [user, onChangeHandler];
+    return [value, onChangeHandler];
 };

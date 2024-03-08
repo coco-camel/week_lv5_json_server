@@ -1,8 +1,8 @@
-import auth from "./auth";
+import auth from "./authAxios";
 
-export const signUp = async (user, navigate) => {
+export const signUp = async (id, password, navigate) => {
     try {
-        const result = await auth.post("/register", user);
+        const result = await auth.post("/register", { id, password });
         navigate("/")
         return result.data;
     } catch (error) {

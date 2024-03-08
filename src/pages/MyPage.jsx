@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { removeCookie } from "../cookies/cookies";
 import styled from "styled-components";
 import ActionButton from "../components/Button";
-import Auth from "../hoc/auth";
+// import { getMyPage } from "../apis/myPage";
 
 const CenteredDiv = styled.div`
   display: flex;
@@ -18,9 +18,11 @@ function MyPage() {
     removeCookie("accessToken");
     navigate("/");
   };
+
   // useEffect(() => {
-  //   getMyPage(navigate);
-  // }, [navigate]);
+  //   getMyPage();
+  // }, []);
+
   return (
     <CenteredDiv>
       <div>
@@ -30,4 +32,4 @@ function MyPage() {
   );
 }
 
-export default Auth(MyPage, true);
+export default MyPage;
