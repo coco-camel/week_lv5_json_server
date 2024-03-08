@@ -49,7 +49,7 @@ function TodoDetali() {
   });
   const navigate = useNavigate();
   const handleNavigateHome = () => {
-    navigate("/");
+    navigate("/todomain");
   };
   return (
     <>

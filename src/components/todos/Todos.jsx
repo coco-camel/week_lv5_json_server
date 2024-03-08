@@ -100,7 +100,7 @@ function Todos({ todos }) {
       {todos.map((todo) => {
         return (
           <Card key={todo.id}>
-            <StyleLink to={`/todo/${todo.id}`}>상세보기</StyleLink>
+            <StyleLink to={`/todos/${todo.id}`}>상세보기</StyleLink>
             <p>{todo.title}</p>
             <p>{todo.contents}</p>
             <CardBtn>

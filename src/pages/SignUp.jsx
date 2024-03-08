@@ -1,5 +1,5 @@
 import React from "react";
-import UserForm from "../components/UserForm";
+import UserForm from "../components/users/UserForm";
 import Auth from "../hoc/auth";
 
 function SignUp() {

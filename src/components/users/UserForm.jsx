@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../apis/login";
-import { useForm } from "../hooks/useForm";
-import { signUp } from "../apis/signUp";
+import { login } from "../../apis/userApis/login";
+import { useForm } from "../../hooks/useForm";
+import { signUp } from "../../apis/userApis/signUp";
 import ActionButton from "./Button";
 import styled from "styled-components";
 
@@ -38,26 +38,26 @@ const ButtonWrapper = styled.div`
 
 function UserForm(props) {
   const navigate = useNavigate();
-  const [id, onChangeId] = useForm();
-  const [password, onChangePassword] = useForm();
+  const [id, onChangeId, onChangeIdReset] = useForm();
+  const [password, onChangePassword, onChangeIdPassword] = useForm();
 
   const onClickLoginHandler = async () => {
-    if (id.trim() === "") {
-      return alert("아이디를 입력해 주세요 .");
-    } else if (password.trim() === "") {
-      return alert("비밀번호를 입력해 주세요.");
+    if (id.trim() === "" || password.trim() === "") {
+      return alert("아이디와 비밀번호를 입력해 주세요 .");
     } else {
       await login(id, password, navigate);
+      onChangeIdReset();
+      onChangeIdPassword();
     }
   };
 
   const onClickSignUpHandler = async () => {
-    if (id.trim() === "") {
-      return alert("아이디를 입력해 주세요 .");
-    } else if (password.trim() === "") {
-      return alert("비밀번호를 입력해 주세요.");
+    if (id.trim() === "" || password.trim() === "") {
+      return alert("아이디와 비밀번호를 입력해 주세요 .");
     } else {
       await signUp(id, password, navigate);
+      onChangeIdReset();
+      onChangeIdPassword();
     }
   };
 

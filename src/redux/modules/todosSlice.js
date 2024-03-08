@@ -1,9 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
     todos: [
-
     ],
 };
 
@@ -12,12 +10,9 @@ const todosSlice = createSlice({
     initialState,
     reducers: {
         insertTodo: (state, action) => {
-            state.todos.push({
-                id: uuidv4(),
-                title: action.payload.title,
-                contents: action.payload.contents,
-                done: false,
-            });
+            state.todos.push(
+                ...action.payload
+            );
         },
         toggleTodo: (state, action) => {
             const todo = state.todos.find(todo => todo.id === action.payload);
@@ -28,9 +23,12 @@ const todosSlice = createSlice({
         removeTodo: (state, action) => {
             state.todos = state.todos.filter(todo => todo.id !== action.payload);
         },
+        replaceTodo: (state, action) => {
+            state.todos = action.payload;
+        },
     },
 });
 
-export const { insertTodo, toggleTodo, removeTodo } = todosSlice.actions;
+export const { insertTodo, toggleTodo, removeTodo, replaceTodo } = todosSlice.actions;
 
 export default todosSlice.reducer;

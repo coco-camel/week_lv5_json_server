@@ -1,10 +1,9 @@
 import React from "react";
 import Header from "../components/ui/Header";
-import TodosForm from "../components/features/TodoForm";
-import TodoList from "../components/features/TodoList";
+import TodosForm from "../components/todos/TodoForm";
+import TodoList from "../components/todos/TodoList";
 import styled from "styled-components";
 import Auth from "../hoc/auth";
-import MyPage from "./MyPage";
 
 const LayOut = styled.div`
   margin: 0 auto;
@@ -18,7 +17,6 @@ function TodoMain() {
       <Header />
       <TodosForm />
       <TodoList />
-      <MyPage />
     </LayOut>
   );
 }

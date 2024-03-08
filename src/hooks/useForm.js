@@ -5,5 +5,8 @@ export const useForm = () => {
     const onChangeHandler = (e) => {
         setValue(e.target.value);
     };
-    return [value, onChangeHandler];
+    const reset = () => {
+        setValue("");
+    }
+    return [value, onChangeHandler, reset];
 };

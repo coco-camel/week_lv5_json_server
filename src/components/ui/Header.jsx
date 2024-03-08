@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import LogOut from "../users/LogOut";
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -17,7 +18,7 @@ function Header() {
     <HeaderWrapper>
       <div>Todo List ✏️</div>
       <div>ϲ( ´•ϲ̲̃ ̲̃•` )ɔ</div>
-      <div>React</div>
+      <LogOut />
     </HeaderWrapper>
   );
 }

@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const authAxios = axios.create({
+const userAxios = axios.create({
     baseURL: process.env.REACT_APP_SERVER_URL,
 });
-export default authAxios;
+export default userAxios;
 
 // export const getAuthAxios = (token) => {
 //     const authAxios = axios.create({

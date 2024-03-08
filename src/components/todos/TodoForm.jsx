@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { insertTodo } from "../../redux/modules/todosSlice";
 import styled from "styled-components";
+import { useForm } from "../../hooks/useForm";
+import { todoRegister } from "../../apis/TodoApis/todoRegister";
 
 const InputContainer = styled.div`
   display: flex;
@@ -41,17 +43,19 @@ const Input = styled.input`
 
 function TodoForm() {
   const dispatch = useDispatch();
-  const [title, setTitle] = useState("");
-  const [contents, setContents] = useState("");
+  const [title, onChangeTitle, onChangeTitleReset] = useForm();
+  const [contents, onChangeContents, onChangeContentsReset] = useForm();
 
-  const onClickTodoInputHandler = () => {
-    dispatch(insertTodo({ title, contents }));
-    setTitle("");
-    setContents("");
+  const onClickTodoInputHandler = async () => {
+    if (title.trim() === "" || contents.trim() === "") {
+      return alert("제목과 내용을 모두 입력해 주세요 .");
+    } else {
+      await todoRegister(title, contents);
+      dispatch(insertTodo([{ title, contents }]));
+      onChangeTitleReset();
+      onChangeContentsReset();
+    }
   };
-
-  const onChangeTitle = (title) => setTitle(title.target.value);
-  const onChangeContents = (contents) => setContents(contents.target.value);
 
   return (
     <InputContainer>
