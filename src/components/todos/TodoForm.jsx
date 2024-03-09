@@ -1,9 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { insertTodo } from "../../redux/modules/todosSlice";
 import styled from "styled-components";
 import { useForm } from "../../hooks/useForm";
-import { todoRegister } from "../../apis/TodoApis/todoRegister";
+import { registerTodo } from "../../redux/modules/todosSlice";
 
 const InputContainer = styled.div`
   display: flex;
@@ -50,8 +49,7 @@ function TodoForm() {
     if (title.trim() === "" || contents.trim() === "") {
       return alert("제목과 내용을 모두 입력해 주세요 .");
     } else {
-      await todoRegister(title, contents);
-      dispatch(insertTodo([{ title, contents }]));
+      dispatch(registerTodo({ title, contents }));
       onChangeTitleReset();
       onChangeContentsReset();
     }

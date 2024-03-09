@@ -91,8 +91,8 @@ function Todos({ todos }) {
   const onClickTodoRemoveHandler = (id) => {
     dispatch(removeTodo(id));
   };
-  const onClickTodoToggleHandler = (id) => {
-    dispatch(toggleTodo(id));
+  const onClickTodoToggleHandler = (todo) => {
+    dispatch(toggleTodo(todo));
   };
 
   return (
@@ -100,11 +100,11 @@ function Todos({ todos }) {
       {todos.map((todo) => {
         return (
           <Card key={todo.id}>
-            <StyleLink to={`/todos/${todo.id}`}>상세보기</StyleLink>
+            <StyleLink to={`/todo/${todo.id}`}>상세보기</StyleLink>
             <p>{todo.title}</p>
             <p>{todo.contents}</p>
             <CardBtn>
-              <button onClick={() => onClickTodoToggleHandler(todo.id)}>
+              <button onClick={() => onClickTodoToggleHandler(todo)}>
                 {todo.done ? "취소" : "완료"}
               </button>
               <button onClick={() => onClickTodoRemoveHandler(todo.id)}>삭제</button>
