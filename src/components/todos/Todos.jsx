@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { removeTodo, toggleTodo } from "../../redux/modules/todosSlice";
+import { __todoRemove, __todoToggle } from "../../redux/modules/todosSlice";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -67,6 +67,7 @@ const CardBtn = styled.div`
     }
   }
 `;
+
 const StyleLink = styled(Link)`
   text-decoration-line: none;
   padding: 5px;
@@ -89,10 +90,11 @@ function Todos({ todos }) {
   const dispatch = useDispatch();
 
   const onClickTodoRemoveHandler = (id) => {
-    dispatch(removeTodo(id));
+    dispatch(__todoRemove(id));
   };
+
   const onClickTodoToggleHandler = (todo) => {
-    dispatch(toggleTodo(todo));
+    dispatch(__todoToggle(todo));
   };
 
   return (

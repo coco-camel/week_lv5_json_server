@@ -3,7 +3,7 @@ import { setCookie } from "../../cookies/cookies";
 
 export const login = async (id, password, navigate) => {
     try {
-        const result = await auth.post("/login", { id, password });
+        const result = await auth.post("/login", { id, password },);
         const { token } = result.data;
         setCookie("accessToken", "Bearer " + token);
         navigate("/todomain");

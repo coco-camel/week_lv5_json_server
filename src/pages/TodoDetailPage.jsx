@@ -1,5 +1,5 @@
 import Auth from "../hoc/auth";
-import TodoDetali from "../components/todos/TodoDetali";
+import TodoDetail from "../components/todos/todoDetail/TodoDetail";
 import Header from "../components/ui/Header";
 import styled from "styled-components";
 
@@ -8,13 +8,13 @@ const LayOut = styled.div`
   max-width: 1200px;
   min-width: 800px;
 `;
-function TodoDetaliPage() {
+function TodoDetailPage() {
   return (
     <LayOut>
       <Header />
-      <TodoDetali />
+      <TodoDetail />
     </LayOut>
   );
 }
 
-export default Auth(TodoDetaliPage, true);
+export default Auth(TodoDetailPage, true);

@@ -44,3 +44,14 @@ export const todoToggle = async (todo) => {
         }
     }
 };
+
+export const todoModify = async (todo) => {
+    try {
+        const result = await auth.put(`/todos/${todo.id}`, { ...todo });
+        return result.data;
+    } catch (error) {
+        if (error.response.status === 401) {
+            alert(error.response.data.message);
+        }
+    }
+};
