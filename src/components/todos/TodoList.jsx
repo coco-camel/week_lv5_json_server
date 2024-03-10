@@ -23,7 +23,8 @@ function TodoList() {
 
   useEffect(() => {
     dispatch(__getTodos());
-  }, []);
+    console.log("gg");
+  }, [dispatch]);
 
   return (
     <TodoListContainer>
@@ -32,7 +33,7 @@ function TodoList() {
         {loading ? (
           <h3>로딩중.... </h3>
         ) : (
-          <React.Fragment>
+          <>
             {todos.filter((todo) => {
               return !todo.done;
             }).length ? (
@@ -44,7 +45,7 @@ function TodoList() {
             ) : (
               <h3>할 일이 없어요!</h3>
             )}
-          </React.Fragment>
+          </>
         )}
       </TodoListWrapper>
       <TodoListWrapper>
@@ -52,7 +53,7 @@ function TodoList() {
         {loading ? (
           <h3>로딩중.... </h3>
         ) : (
-          <React.Fragment>
+          <>
             {todos.filter((todo) => {
               return todo.done;
             }).length ? (
@@ -64,7 +65,7 @@ function TodoList() {
             ) : (
               <h3>할 일이 많을 텐데?</h3>
             )}
-          </React.Fragment>
+          </>
         )}
       </TodoListWrapper>
     </TodoListContainer>

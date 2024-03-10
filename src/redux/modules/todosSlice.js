@@ -18,8 +18,9 @@ export const __todoRegister = createAsyncThunk(
 export const __todoRemove = createAsyncThunk(
     'todos/remove',
     async (id) => {
-        const result = await todoRemove(id);
-        return result;
+        await todoRemove(id);
+        // 버전문제.....
+        return id;
     });
 
 export const __todoToggle = createAsyncThunk(
@@ -55,12 +56,12 @@ const todosSlice = createSlice({
 
             builder.addCase(__todoRegister.fulfilled, (state, action) => {
                 state.loading = false;
-                state.todos.push(action.payload);
+                state.todos = [...state.todos, action.payload];
             });
 
             builder.addCase(__todoRemove.fulfilled, (state, action) => {
                 state.loading = false;
-                state.todos = state.todos.filter(todo => todo.id !== action.payload.id);
+                state.todos = state.todos.filter(todo => todo.id !== action.payload);
             });
 
             builder.addCase(__todoToggle.fulfilled, (state, action) => {
@@ -71,6 +72,7 @@ const todosSlice = createSlice({
                     }
                     return todo;
                 });
+                console.log(state.todos);
             });
 
             builder.addCase(__todoModify.fulfilled, (state, action) => {
