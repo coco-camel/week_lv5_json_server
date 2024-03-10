@@ -17,8 +17,8 @@ export const __todoRegister = createAsyncThunk(
 
 export const __todoRemove = createAsyncThunk(
     'todos/remove',
-    async (id) => {
-        const result = await todoRemove(id);
+    async (todo) => {
+        const result = await todoRemove(todo.id);
         return result;
     });
 

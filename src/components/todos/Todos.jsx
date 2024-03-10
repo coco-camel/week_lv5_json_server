@@ -89,8 +89,8 @@ const StyleLink = styled(Link)`
 function Todos({ todos }) {
   const dispatch = useDispatch();
 
-  const onClickTodoRemoveHandler = (id) => {
-    dispatch(__todoRemove(id));
+  const onClickTodoRemoveHandler = (todo) => {
+    dispatch(__todoRemove(todo));
   };
 
   const onClickTodoToggleHandler = (todo) => {
@@ -109,7 +109,7 @@ function Todos({ todos }) {
               <button onClick={() => onClickTodoToggleHandler(todo)}>
                 {todo.done ? "취소" : "완료"}
               </button>
-              <button onClick={() => onClickTodoRemoveHandler(todo.id)}>삭제</button>
+              <button onClick={() => onClickTodoRemoveHandler(todo)}>삭제</button>
             </CardBtn>
           </Card>
         );
