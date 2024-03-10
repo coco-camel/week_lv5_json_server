@@ -72,7 +72,6 @@ const todosSlice = createSlice({
                     }
                     return todo;
                 });
-                console.log(state.todos);
             });
 
             builder.addCase(__todoModify.fulfilled, (state, action) => {

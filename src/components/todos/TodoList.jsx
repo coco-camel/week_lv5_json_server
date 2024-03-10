@@ -23,7 +23,6 @@ function TodoList() {
 
   useEffect(() => {
     dispatch(__getTodos());
-    console.log("gg");
   }, [dispatch]);
 
   return (
