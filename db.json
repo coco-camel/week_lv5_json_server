@@ -1,16 +1,3 @@
 {
-  "todos": [
-    {
-      "id": "41d7",
-      "title": "ㅇㄴㅁ",
-      "contents": "ㅇㄴㅁ",
-      "done": true
-    },
-    {
-      "id": "e4f3",
-      "title": "ㅇㄴㅁ",
-      "contents": "ㅇㄴㅁ",
-      "done": false
-    }
-  ]
+  "todos": []
 }

@@ -53,25 +53,25 @@ const todosSlice = createSlice({
                 state.todos = action.payload;
             });
 
-
             builder.addCase(__todoRegister.fulfilled, (state, action) => {
                 state.loading = false;
-                state.todos = [...state.todos, action.payload];
+                state.todos.push(action.payload);
             });
-
 
             builder.addCase(__todoRemove.fulfilled, (state, action) => {
                 state.loading = false;
                 state.todos = state.todos.filter(todo => todo.id !== action.payload.id);
             });
 
-
             builder.addCase(__todoToggle.fulfilled, (state, action) => {
                 state.loading = false;
-                const todo = state.todos.find(todo => todo.id === action.payload.id);
-                todo.done = !todo.done;
+                state.todos = state.todos.map(todo => {
+                    if (todo.id === action.payload.id) {
+                        return { ...todo, done: !todo.done };
+                    }
+                    return todo;
+                });
             });
-
 
             builder.addCase(__todoModify.fulfilled, (state, action) => {
                 state.loading = false;

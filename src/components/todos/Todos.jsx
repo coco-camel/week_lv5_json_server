@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
-import { __getTodos, __todoRemove, __todoToggle } from "../../redux/modules/todosSlice";
+import { __todoRemove, __todoToggle } from "../../redux/modules/todosSlice";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -96,7 +96,6 @@ function Todos({ todos }) {
   const onClickTodoToggleHandler = (todo) => {
     dispatch(__todoToggle(todo));
   };
-
   return (
     <Cards>
       {todos.map((todo) => {
