@@ -21,8 +21,8 @@ export const DetailCardIdBtn = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  ${({ position }) => {
-    switch (position) {
+  ${({ $position }) => {
+    switch ($position) {
       case "editBtn":
         return css`
           justify-content: center;

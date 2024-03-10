@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { __getTodos, __todoRemove, __todoToggle } from "../../redux/modules/todosSlice";
 import { Link } from "react-router-dom";
@@ -91,9 +91,6 @@ function Todos({ todos }) {
 
   const onClickTodoRemoveHandler = (id) => {
     dispatch(__todoRemove(id));
-
-    // 배포 후 문제 생겨서 넣어봄...
-    dispatch(__getTodos());
   };
 
   const onClickTodoToggleHandler = (todo) => {

@@ -3,7 +3,6 @@ import Todos from "./Todos";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { __getTodos } from "../../redux/modules/todosSlice";
-import { getUser } from "../../apis/userApis/getUser";
 
 const TodoListContainer = styled.div`
   display: flex;
@@ -20,37 +19,52 @@ const InputTitle = styled.div`
 `;
 function TodoList() {
   const dispatch = useDispatch();
-  const todos = useSelector((state) => state.todosReducer.todos);
+  const { loading, todos } = useSelector((state) => state.todosReducer);
 
   useEffect(() => {
     dispatch(__getTodos());
-    // getUser();
-  }, [dispatch]);
+  }, []);
 
   return (
     <TodoListContainer>
       <TodoListWrapper>
         <InputTitle>Working.. 🔥</InputTitle>
-        {todos ? (
-          <Todos
-            todos={todos.filter((todo) => {
-              return !todo.done;
-            })}
-          />
+        {loading ? (
+          <h3>로딩중.... </h3>
         ) : (
-          <p>로딩중.....</p>
+          <React.Fragment>
+            {todos.filter((todo) => {
+              return !todo.done;
+            }).length ? (
+              <Todos
+                todos={todos.filter((todo) => {
+                  return !todo.done;
+                })}
+              />
+            ) : (
+              <h3>할 일이 없어요!</h3>
+            )}
+          </React.Fragment>
         )}
       </TodoListWrapper>
       <TodoListWrapper>
         <InputTitle>Done..! 🎉</InputTitle>
-        {todos ? (
-          <Todos
-            todos={todos.filter((todo) => {
-              return todo.done;
-            })}
-          />
+        {loading ? (
+          <h3>로딩중.... </h3>
         ) : (
-          <p>로딩중.....</p>
+          <React.Fragment>
+            {todos.filter((todo) => {
+              return todo.done;
+            }).length ? (
+              <Todos
+                todos={todos.filter((todo) => {
+                  return todo.done;
+                })}
+              />
+            ) : (
+              <h3>할 일이 많을 텐데?</h3>
+            )}
+          </React.Fragment>
         )}
       </TodoListWrapper>
     </TodoListContainer>

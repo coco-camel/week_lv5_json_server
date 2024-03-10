@@ -14,7 +14,6 @@ export const getTodoList = async () => {
 export const todoRegister = async (todo) => {
     try {
         const result = await auth.post("/todos", { ...todo, done: false });
-        alert("등록이 완료 되었습니다.")
         return result.data;
     } catch (error) {
         if (error.response.status === 401) {

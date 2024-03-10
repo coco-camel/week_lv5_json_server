@@ -40,24 +40,41 @@ const todosSlice = createSlice({
     name: 'todos',
     initialState: {
         todos: [],
+        loading: true,
     },
     reducers: {},
     extraReducers:
         (builder) => {
+            builder.addCase(__getTodos.pending, (state) => {
+                state.loading = true;
+            });
             builder.addCase(__getTodos.fulfilled, (state, action) => {
+                state.loading = false;
                 state.todos = action.payload;
             });
+
+
             builder.addCase(__todoRegister.fulfilled, (state, action) => {
+                state.loading = false;
                 state.todos = [...state.todos, action.payload];
             });
+
+
             builder.addCase(__todoRemove.fulfilled, (state, action) => {
+                state.loading = false;
                 state.todos = state.todos.filter(todo => todo.id !== action.payload.id);
             });
+
+
             builder.addCase(__todoToggle.fulfilled, (state, action) => {
+                state.loading = false;
                 const todo = state.todos.find(todo => todo.id === action.payload.id);
                 todo.done = !todo.done;
             });
+
+
             builder.addCase(__todoModify.fulfilled, (state, action) => {
+                state.loading = false;
                 state.todos = state.todos.map(todo => todo.id === action.payload.id ? action.payload : todo);
             });
         }

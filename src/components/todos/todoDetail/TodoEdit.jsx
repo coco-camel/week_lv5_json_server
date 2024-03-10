@@ -10,7 +10,7 @@ function TodoEdit() {
   const navigate = useNavigate();
   const [contents, setContents] = useState("");
   const params = useParams();
-  const todos = useSelector((state) => state.todosReducer.todos);
+  const { todos } = useSelector((state) => state.todosReducer);
 
   const todo = todos.find((todo) => {
     return todo.id === params.id;
@@ -32,7 +32,7 @@ function TodoEdit() {
 
   useEffect(() => {
     dispatch(__getTodos());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     if (todo) {
@@ -43,29 +43,25 @@ function TodoEdit() {
   return (
     <S.DetailWrapper>
       <S.DetailCard>
-        {todo ? (
-          <>
-            <S.DetailCardIdBtn>
-              <h3>id: {todo.id}</h3>
-              <ActionButton
-                type="button"
-                text="이전으로"
-                onClick={() => NavigateDetailHandler(todo.id)}
-              />
-            </S.DetailCardIdBtn>
-            <h2>{todo.title}</h2>
-            <S.StyledTextarea value={contents} onChange={onChangeContents} />
-            <S.DetailCardIdBtn position="editBtn">
-              <ActionButton
-                type="button"
-                text="완료"
-                onClick={() => onClickTodoModify({ ...todo, contents })}
-              />
-            </S.DetailCardIdBtn>
-          </>
-        ) : (
-          <p>로딩중.....</p>
-        )}
+        <>
+          <S.DetailCardIdBtn>
+            <h3>id: {todo.id}</h3>
+            <ActionButton
+              type="button"
+              text="이전으로"
+              onClick={() => NavigateDetailHandler(todo.id)}
+            />
+          </S.DetailCardIdBtn>
+          <h2>{todo.title}</h2>
+          <S.StyledTextarea value={contents} onChange={onChangeContents} />
+          <S.DetailCardIdBtn $position="editBtn">
+            <ActionButton
+              type="button"
+              text="완료"
+              onClick={() => onClickTodoModify({ ...todo, contents })}
+            />
+          </S.DetailCardIdBtn>
+        </>
       </S.DetailCard>
     </S.DetailWrapper>
   );
