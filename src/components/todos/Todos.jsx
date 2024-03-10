@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { __todoRemove, __todoToggle } from "../../redux/modules/todosSlice";
+import { __getTodos, __todoRemove, __todoToggle } from "../../redux/modules/todosSlice";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -89,8 +89,11 @@ const StyleLink = styled(Link)`
 function Todos({ todos }) {
   const dispatch = useDispatch();
 
-  const onClickTodoRemoveHandler = (todo) => {
-    dispatch(__todoRemove(todo));
+  const onClickTodoRemoveHandler = (id) => {
+    dispatch(__todoRemove(id));
+
+    // 배포 후 문제 생겨서 넣어봄...
+    dispatch(__getTodos());
   };
 
   const onClickTodoToggleHandler = (todo) => {
@@ -109,7 +112,7 @@ function Todos({ todos }) {
               <button onClick={() => onClickTodoToggleHandler(todo)}>
                 {todo.done ? "취소" : "완료"}
               </button>
-              <button onClick={() => onClickTodoRemoveHandler(todo)}>삭제</button>
+              <button onClick={() => onClickTodoRemoveHandler(todo.id)}>삭제</button>
             </CardBtn>
           </Card>
         );
