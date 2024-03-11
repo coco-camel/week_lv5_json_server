@@ -32,7 +32,7 @@ function TodoEdit() {
 
   useEffect(() => {
     dispatch(__getTodos());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (todo) {
@@ -43,25 +43,29 @@ function TodoEdit() {
   return (
     <S.DetailWrapper>
       <S.DetailCard>
-        <>
-          <S.DetailCardIdBtn>
-            <h3>id: {todo.id}</h3>
-            <ActionButton
-              type="button"
-              text="이전으로"
-              onClick={() => NavigateDetailHandler(todo.id)}
-            />
-          </S.DetailCardIdBtn>
-          <h2>{todo.title}</h2>
-          <S.StyledTextarea value={contents} onChange={onChangeContents} />
-          <S.DetailCardIdBtn $position="editBtn">
-            <ActionButton
-              type="button"
-              text="완료"
-              onClick={() => onClickTodoModify({ ...todo, contents })}
-            />
-          </S.DetailCardIdBtn>
-        </>
+        {todo ? (
+          <>
+            <S.DetailCardIdBtn>
+              <h3>id: {todo.id}</h3>
+              <ActionButton
+                type="button"
+                text="이전으로"
+                onClick={() => NavigateDetailHandler(todo.id)}
+              />
+            </S.DetailCardIdBtn>
+            <h2>{todo.title}</h2>
+            <S.StyledTextarea value={contents} onChange={onChangeContents} />
+            <S.DetailCardIdBtn $position="editBtn">
+              <ActionButton
+                type="button"
+                text="완료"
+                onClick={() => onClickTodoModify({ ...todo, contents })}
+              />
+            </S.DetailCardIdBtn>
+          </>
+        ) : (
+          <p>로딩중.....</p>
+        )}
       </S.DetailCard>
     </S.DetailWrapper>
   );
