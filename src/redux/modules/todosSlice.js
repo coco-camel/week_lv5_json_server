@@ -66,12 +66,7 @@ const todosSlice = createSlice({
 
             builder.addCase(__todoToggle.fulfilled, (state, action) => {
                 state.loading = false;
-                state.todos = state.todos.map(todo => {
-                    if (todo.id === action.payload.id) {
-                        return { ...todo, done: !todo.done };
-                    }
-                    return todo;
-                });
+                state.todos = state.todos.map(todo => todo.id === action.payload.id ? { ...todo, done: !todo.done } : todo);
             });
 
             builder.addCase(__todoModify.fulfilled, (state, action) => {
